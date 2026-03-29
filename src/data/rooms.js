@@ -10,7 +10,7 @@ export const rooms = [
   },
   {
     "id": "av",
-    "name": "AV,
+    "name": "AV",
     "area": "Library",
     "locked": true,
     "requiredKeyId": "2ae",
