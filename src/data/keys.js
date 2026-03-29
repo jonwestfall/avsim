@@ -3,7 +3,7 @@ export const keys = [
     "id": "2ae",
     "name": "2AE",
     "opens": [
-      "av_office"
+      "av"
     ],
     "rarity": "common"
   },
@@ -11,10 +11,8 @@ export const keys = [
     "id": "2ag",
     "name": "2AG",
     "opens": [
-      "a101",
-      "a102",
-      "a103",
-      "wing_a_hall"
+      "unit_office",
+      "library"
     ],
     "rarity": "common"
   },
@@ -28,8 +26,9 @@ export const keys = [
     "id": "corbin",
     "name": "Corbin",
     "opens": [
-      "gym_main",
-      "gym_storage"
+      "114",
+      "116",
+      "212"
     ],
     "rarity": "common"
   },
@@ -37,8 +36,7 @@ export const keys = [
     "id": "2ah",
     "name": "2AH",
     "opens": [
-      "auditorium_main",
-      "auditorium_booth"
+      "auditorium_main"
     ],
     "rarity": "uncommon"
   },
@@ -46,24 +44,23 @@ export const keys = [
     "id": "2aba1",
     "name": "2ABA1",
     "opens": [
-      "library",
-      "media_center"
+      "cafm",
+      "gym"
     ],
     "rarity": "common"
   },
   {
     "id": "2ad",
     "name": "2AD",
-    "opens": [
-      "night_entrance",
-      "night_room_1"
-    ],
+    "opens": [],
     "rarity": "uncommon"
   },
   {
     "id": "2as1",
     "name": "2AS1",
-    "opens": [],
+    "opens": [
+      "218"
+    ],
     "rarity": "common"
   },
   {

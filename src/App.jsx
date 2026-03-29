@@ -52,6 +52,12 @@ function byId(list) {
   }, {});
 }
 
+function normalizeId(value) {
+  return String(value || '')
+    .trim()
+    .toLowerCase();
+}
+
 function toAreaId(label) {
   return `area_${label.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')}`;
 }
@@ -395,12 +401,18 @@ export default function App() {
     });
   }
 
-  function keyCanOpenRoom(keyId, roomId, activeShift = shift) {
+  function keyCanOpenRoom(keyId, roomId, requiredKeyId, activeShift = shift) {
     if (activeShift?.hasTrivMasterKey) return true;
+
+    if (normalizeId(keyId) && normalizeId(keyId) === normalizeId(requiredKeyId)) {
+      return true;
+    }
+
     const key = keysById[keyId];
     if (!key) return false;
     if (key.opens === 'all') return true;
-    return key.opens.includes(roomId);
+    const normalizedRoomId = normalizeId(roomId);
+    return (key.opens || []).some((openRoomId) => normalizeId(openRoomId) === normalizedRoomId);
   }
 
   function tryUnlock(keyId) {
@@ -410,6 +422,7 @@ export default function App() {
       if (!prev || !prev.activeTask) return prev;
       const active = prev.activeTask;
       let targetRoomId;
+      let targetRequiredKeyId;
       let mission;
       let pickup;
 
@@ -417,19 +430,22 @@ export default function App() {
         mission = prev.missionStates.find((m) => m.id === active.refId);
         if (!mission) return prev;
         targetRoomId = mission.roomId;
+        targetRequiredKeyId = mission.requiredKeyId;
       }
       if (active.kind === 'pickup') {
         pickup = prev.pickupTasks.find((p) => p.id === active.refId);
         if (!pickup) return prev;
         targetRoomId = pickup.roomId;
+        targetRequiredKeyId = pickup.requiredKeyId;
       }
       if (active.kind === 'basketball') {
         mission = prev.missionStates.find((m) => m.id === active.refId);
         if (!mission) return prev;
         targetRoomId = mission.roomId;
+        targetRequiredKeyId = mission.requiredKeyId;
       }
 
-      const ok = keyCanOpenRoom(keyId, targetRoomId, prev);
+      const ok = keyCanOpenRoom(keyId, targetRoomId, targetRequiredKeyId, prev);
 
       if (!ok) {
         playSound('unlock_fail', settings.soundEnabled);

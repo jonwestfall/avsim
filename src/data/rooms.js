@@ -37,7 +37,7 @@ export const rooms = [
     "name": "B243",
     "area": "Second Floor",
     "locked": true,
-    "requiredKeyId": "wing_a",
+    "requiredKeyId": "key_10",
     "travelMinutes": 7
   },
   {
