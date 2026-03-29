@@ -18,17 +18,25 @@ export const flavorText = {
   "pickupComplete": [
     "Pickup done. Nothing says closure like coiling 40 feet of cable.",
     "Recovered and returned. The AV Office shelves feel whole again.",
-    "You reclaimed the equipment and at least three mystery adapters."
+    "You reclaimed the equipment and at least three mystery adapters.",
+    "Back to AV"
   ],
   "shiftSummary": [
     "You smelled faintly of dust, warm CRT plastic, and responsibility.",
     "Another shift complete. The halls are quiet, but your key ring still hums.",
-    "You served this school with elbow grease and accurate cable labeling."
+    "You served this school with elbow grease and accurate cable labeling.",
+    "You don't smoke and aren't a skinhead? Why are you an AV guy?",
+    "Shit, were we supposed to play Channel One?",
+    "The basketball team sucks, but games do go an hour longer because of fouls. Extra $5.15."
   ],
   "idleMessages": [
-    "The copy machine nearby is making sounds no one should trust.",
+    "The copy machine nearby is making sounds no one should trust. Probably because someone put a luggage lock through the prong.",
     "A coach asks if you can record sound on the basketball games. You lie.",
-    "Three angles is all you need for a basketball court."
+    "Three angles is all you need for a basketball court.",
+    "Ramen noodles again? ",
+    "Would you say your dad's a master at painting?",
+    "He's just dumb. It isn't that he doesn't care, he can't do the work!",
+    "Let's just go write in the elevator shaft."
   ]
 };
 
