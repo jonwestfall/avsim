@@ -1,0 +1,179 @@
+Create a small single-page React game called “AV Simulator” that can be deployed as a static site to GitHub Pages under a repository path, so all routing/assets must work from a subdirectory such as /avsim/.
+
+Tech requirements:
+- Use React + Vite
+- No backend
+- No database
+- No login
+- No external game engine
+- Pure client-side app
+- Keep it lightweight and easy to edit
+- Store mission progress and best times in localStorage
+- Make the UI feel like a 1990s school AV office: institutional beige, muted greens/blues, simple panels, slightly retro but clean and readable
+- The app must run correctly when deployed to GitHub Pages from a project repository, not just localhost
+
+Core game concept:
+The player is an “AV Guy” in a high school. They receive missions to deliver equipment to rooms across the school, unlock rooms using the correct keys, and complete pickups later. The tone should be nostalgic and a little funny, but affectionate rather than parody-heavy.
+
+Gameplay requirements:
+1. Main menu
+   - Title screen: AV Simulator
+   - Subtitle with a humorous line like “Because somebody has to haul the TV cart”
+   - Buttons for:
+     - Start Shift
+     - Mission Board
+     - Key Ring
+     - High Scores / Best Times
+     - About
+
+2. Core loop
+   - A “shift” consists of a sequence of missions
+   - Each mission has:
+     - equipment item
+     - destination room
+     - required key
+     - optional pickup time later
+   - Player accepts mission from the mission board
+   - Player “travels” to a room using a school map or room list
+   - If the room is locked, the player must choose the correct key from their key ring
+   - If correct, unlock succeeds and delivery can be completed
+   - If wrong, show a funny but harmless message and a time penalty
+   - After delivery, some missions later generate a pickup task
+   - Completing delivery and pickup earns points
+
+3. Mission types
+   Include these mission categories:
+   - Deliver TV cart
+   - Deliver 16mm projector
+   - Deliver microphone
+   - Deliver VHS camcorder / game camera
+   - Set up for night school
+   - Weekend event support
+   - Basketball filming shift:
+     - Freshmen at 3:30 PM
+     - JV at 5:00 PM
+     - Varsity at 7:00 PM
+     - End around 10:00 PM
+   The basketball filming shift should feel like a longer chained mission with multiple checkpoints.
+
+4. Game systems
+   - Time system: each action consumes in-game minutes
+   - Score system:
+     - points for successful deliveries and pickups
+     - bonus for speed
+     - penalty for wrong key attempts
+     - combo bonus for multiple successful missions in a row
+   - Shift summary screen:
+     - total missions completed
+     - total time
+     - mistakes
+     - final score
+     - nostalgic summary text like “You smelled faintly of dust, warm CRT plastic, and responsibility.”
+
+5. Key ring mechanic
+   - Display available keys as labeled keys on a virtual key ring
+   - Each mission indicates which rooms can be opened by which key, but the player must remember or infer it over time unless “easy mode” is enabled
+   - Include at least:
+     - AV Office key
+     - Classroom Wing A key
+     - Classroom Wing B key
+     - Gym key
+     - Auditorium key
+     - Library/Media Center key
+     - Night School Entrance key
+     - Master key (rare or unlockable)
+   - Build this as configurable JSON/data so I can easily edit the rooms and keys later
+
+6. Data-driven design
+   Create separate editable data files for:
+   - rooms
+   - keys
+   - equipment
+   - missions
+   - flavor text / event messages
+   I want to be able to replace placeholder room names with my own list later without changing core code.
+
+7. School map / navigation
+   - Show a simple clickable school layout OR a categorized room list
+   - Keep it 2D and lightweight, not animated 3D
+   - Include areas like:
+     - Main Office
+     - AV Office
+     - Hallways / Wings
+     - Gym
+     - Auditorium
+     - Library
+     - Night School entrance
+     - Classrooms
+   - Build map data so rooms are easy to edit later
+
+8. Difficulty / accessibility
+   - Easy mode: show required key on the mission card
+   - Normal mode: player chooses from memory
+   - Optional “Old Hand” mode: more missions, more penalties, less guidance
+   - Large readable text and strong contrast
+   - Playable with mouse only
+
+9. Audio/visual flavor
+   - Add optional sound effects for:
+     - key jingle
+     - cart rolling
+     - successful unlock
+     - wrong key buzzer
+   - Keep sounds optional and easy to mute
+   - Add little flavor text such as:
+     - “That TV weighs as much as a troubled marriage.”
+     - “The projector smells like hot dust and educational film strips.”
+   Keep humor dry and school-safe.
+
+10. Architecture
+   - Organize into reusable components
+   - Suggested components:
+     - AppShell
+     - MainMenu
+     - MissionBoard
+     - MissionCard
+     - SchoolMap
+     - KeyRing
+     - ShiftHUD
+     - ShiftSummary
+     - SettingsPanel
+   - Use React state cleanly
+   - Avoid overengineering
+   - Keep comments in the code explaining how to swap data later
+
+11. GitHub Pages compatibility
+   - Configure Vite with the correct base path for deployment at /avsim/
+   - Ensure asset references work under GitHub Pages project hosting
+   - Include a README with run/build/deploy instructions
+   - Include a GitHub Actions workflow for deploying dist/ to GitHub Pages
+
+12. Starter content
+   - Include sample rooms, keys, and missions so the game is immediately playable
+   - Use placeholder room data that clearly indicates where I should replace it with real room names later
+
+13. Polish
+   - Add a “mission complete” pop-up
+   - Add localStorage for:
+     - best shift score
+     - fastest basketball filming shift
+     - settings
+   - Add a fake “AV Office clipboard” look for mission lists
+   - Add “Shift of the Day” randomization
+
+Output requirements:
+- Create the full project in a new folder named avsim
+- Use Vite
+- Include package.json scripts for dev, build, and preview
+- Include GitHub Actions deployment workflow
+- Include concise README
+- Make the project functional, not just a mockup
+- Keep all placeholder data clearly marked for later editing
+
+Important:
+After generating the app, explain exactly which files I should edit to change:
+1. room names
+2. keys
+3. missions
+4. humor/flavor text
+5. GitHub Pages repo path
