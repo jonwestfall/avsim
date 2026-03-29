@@ -58,7 +58,7 @@ export const rooms = [
   },
   {
     "id": "cafm",
-    "name": "Cafeteria Microphone",
+    "name": "Cafeteria West Cabinet",
     "area": "Cafeteria",
     "locked": true,
     "requiredKeyId": "2aba1",
