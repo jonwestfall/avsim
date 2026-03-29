@@ -11,7 +11,6 @@ import ModalPopup from './components/ModalPopup';
 import { keys, DEFAULT_PLAYER_KEYS } from './data/keys';
 import { rooms } from './data/rooms';
 import { equipment } from './data/equipment';
-import { mapAreas } from './data/mapAreas';
 import { flavorText, pickRandom } from './data/flavorText';
 import {
   START_OF_SHIFT_MINUTE,
@@ -51,6 +50,25 @@ function byId(list) {
     acc[item.id] = item;
     return acc;
   }, {});
+}
+
+function toAreaId(label) {
+  return `area_${label.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')}`;
+}
+
+function buildMapAreasFromRooms(roomList) {
+  const grouped = new Map();
+  roomList.forEach((room) => {
+    const label = (room.area || 'Unassigned').trim() || 'Unassigned';
+    if (!grouped.has(label)) grouped.set(label, []);
+    grouped.get(label).push(room.id);
+  });
+
+  return Array.from(grouped.entries()).map(([label, roomIds]) => ({
+    id: toAreaId(label),
+    label,
+    roomIds
+  }));
 }
 
 function makeShift(settings, dateText) {
@@ -94,6 +112,7 @@ export default function App() {
   const keysById = useMemo(() => byId(keys), []);
   const roomsById = useMemo(() => byId(rooms), []);
   const equipmentById = useMemo(() => byId(equipment), []);
+  const mapAreas = useMemo(() => buildMapAreasFromRooms(rooms), []);
 
   const todayText = new Date().toISOString().slice(0, 10);
   const todayShiftPreview = shiftOfTheDay(todayText, settings.difficulty)
