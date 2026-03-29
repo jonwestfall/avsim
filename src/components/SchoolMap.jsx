@@ -1,8 +1,16 @@
-export default function SchoolMap({ mapAreas, roomsById, currentRoomId, onTravel, disabled }) {
+export default function SchoolMap({
+  mapAreas,
+  roomsById,
+  currentRoomId,
+  onTravel,
+  disabled,
+  title = 'School Map / Room List',
+  description = 'Mouse-only friendly: click a room to travel there.'
+}) {
   return (
     <section className="panel">
-      <h2>School Map / Room List</h2>
-      <p className="muted">Mouse-only friendly: click a room to travel there.</p>
+      <h2>{title}</h2>
+      <p className="muted">{description}</p>
       <div className="map-columns">
         {mapAreas.map((area) => (
           <div key={area.id} className="map-area">

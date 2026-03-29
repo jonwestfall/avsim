@@ -89,6 +89,8 @@ function makeShift(settings, dateText) {
     difficultyLabel: getDifficultyLabel(settings.difficulty),
     basketballStartedAt: null,
     basketballFinishedAt: null,
+    hasTrivMasterKey: false,
+    trivAskUsed: false,
     lastMessage: 'Clock in. Clipboard secured. Key ring ready.'
   };
 }
@@ -113,6 +115,17 @@ export default function App() {
   const roomsById = useMemo(() => byId(rooms), []);
   const equipmentById = useMemo(() => byId(equipment), []);
   const mapAreas = useMemo(() => buildMapAreasFromRooms(rooms), []);
+  const currentShiftKeyIds = useMemo(() => {
+    const keyIds = [...DEFAULT_PLAYER_KEYS];
+    if (shift?.hasTrivMasterKey && !keyIds.includes('master')) {
+      keyIds.push('master');
+    }
+    return keyIds;
+  }, [shift]);
+  const currentShiftKeys = useMemo(
+    () => keys.filter((key) => currentShiftKeyIds.includes(key.id)),
+    [currentShiftKeyIds]
+  );
 
   const todayText = new Date().toISOString().slice(0, 10);
   const todayShiftPreview = shiftOfTheDay(todayText, settings.difficulty)
@@ -382,7 +395,8 @@ export default function App() {
     });
   }
 
-  function keyCanOpenRoom(keyId, roomId) {
+  function keyCanOpenRoom(keyId, roomId, activeShift = shift) {
+    if (activeShift?.hasTrivMasterKey) return true;
     const key = keysById[keyId];
     if (!key) return false;
     if (key.opens === 'all') return true;
@@ -415,7 +429,7 @@ export default function App() {
         targetRoomId = mission.roomId;
       }
 
-      const ok = keyCanOpenRoom(keyId, targetRoomId);
+      const ok = keyCanOpenRoom(keyId, targetRoomId, prev);
 
       if (!ok) {
         playSound('unlock_fail', settings.soundEnabled);
@@ -456,6 +470,56 @@ export default function App() {
     });
 
     playSound('key_jingle', settings.soundEnabled);
+  }
+
+  function askTrivFor2A() {
+    if (!shift) {
+      setPopup({
+        title: 'No Active Shift',
+        body: 'Start a shift first, then ask Triv for 2A.'
+      });
+      return;
+    }
+
+    if (shift.trivAskUsed) {
+      setPopup({
+        title: 'Triv Is Out',
+        body: 'You already asked Triv once this shift.'
+      });
+      return;
+    }
+
+    const success = Math.random() < 0.5;
+
+    adjustShift((prev) => {
+      if (!prev) return prev;
+      if (prev.trivAskUsed) return prev;
+
+      return {
+        ...prev,
+        trivAskUsed: true,
+        hasTrivMasterKey: success,
+        lastMessage: success
+          ? 'Triv came through. You now have Master Key access for the rest of this shift.'
+          : 'Triv checked 2A and shrugged. No master key today.'
+      };
+    });
+
+    if (success) {
+      setSelectedKeyId('master');
+      playSound('unlock_ok', settings.soundEnabled);
+      setPopup({
+        title: 'Triv Delivered',
+        body: '50/50 roll succeeded. Master Key unlocked for the rest of your current shift.'
+      });
+      return;
+    }
+
+    playSound('unlock_fail', settings.soundEnabled);
+    setPopup({
+      title: 'No Luck',
+      body: 'Triv could not get you 2A this time. Keep working with your current ring.'
+    });
   }
 
   function startPickup(pickupId) {
@@ -581,15 +645,8 @@ export default function App() {
             keysById={keysById}
             easyMode={easyMode}
             onAcceptMission={acceptMission}
-            activeTask={activeTaskDetails}
             pickupTasks={pickupTasksReady}
             onStartPickup={startPickup}
-            onBasketballCheckpoint={advanceBasketballCheckpoint}
-            onTryUnlock={tryUnlock}
-            selectedKeyId={selectedKeyId}
-            basketballStatus={basketballStatus}
-            canEndShift={canEndShift}
-            onEndShift={endShift}
           />
 
           <SchoolMap
@@ -598,18 +655,50 @@ export default function App() {
             currentRoomId={shift?.currentRoomId}
             onTravel={handleTravel}
             disabled={!shift?.activeTask}
+            title="Step 2: Pick Location"
+            description="Choose where to travel for the task you accepted."
           />
 
           <KeyRing
-            keys={keys.filter((key) => DEFAULT_PLAYER_KEYS.includes(key.id) || key.id === 'master')}
+            keys={currentShiftKeys}
             selectedKeyId={selectedKeyId}
             onSelectKey={setSelectedKeyId}
             locked={false}
+            title="Step 3: Pick Key"
+            description="Choose the key you want ready before delivering."
           />
 
           <section className="panel">
-            <h2>Clipboard Notes</h2>
-            <p>{shift?.lastMessage ?? pickRandom(flavorText.idleMessages)}</p>
+            <h2>Step 4: Deliver</h2>
+            {activeTaskDetails ? (
+              <>
+                <p>
+                  <strong>Task:</strong> {activeTaskDetails.kind}
+                </p>
+                <p>
+                  <strong>Status:</strong> {activeTaskDetails.statusLine}
+                </p>
+                {activeTaskDetails.requiresUnlock ? (
+                  <button onClick={() => tryUnlock(selectedKeyId)} disabled={!selectedKeyId}>
+                    Deliver Using Selected Key
+                  </button>
+                ) : null}
+                {activeTaskDetails.kind === 'basketball' ? (
+                  <button onClick={advanceBasketballCheckpoint} disabled={!basketballStatus?.canAdvance}>
+                    {basketballStatus?.buttonLabel || 'Advance Checkpoint'}
+                  </button>
+                ) : null}
+              </>
+            ) : (
+              <p className="muted">No active task. Complete Step 1 first.</p>
+            )}
+            <div className="task-panel">
+              <h3>Shift Status</h3>
+              <p>{shift?.lastMessage ?? pickRandom(flavorText.idleMessages)}</p>
+              <button onClick={endShift} disabled={!canEndShift}>
+                End Shift
+              </button>
+            </div>
             <button onClick={() => setView('menu')}>Back to Main Menu</button>
           </section>
         </>
@@ -618,12 +707,30 @@ export default function App() {
       {view === 'keys' ? (
         <>
           <KeyRing
-            keys={keys}
+            keys={currentShiftKeys}
             selectedKeyId={selectedKeyId}
             onSelectKey={setSelectedKeyId}
             locked={false}
           />
           <section className="panel">
+            <h3>Ask Triv for 2A</h3>
+            <p className="muted">
+              50% chance to unlock Master Key access for the rest of the current shift.
+            </p>
+            <button onClick={askTrivFor2A} disabled={!shift || shift?.trivAskUsed}>
+              Ask Triv for 2A
+            </button>
+            {shift ? (
+              <p className="muted">
+                {shift.trivAskUsed
+                  ? shift.hasTrivMasterKey
+                    ? 'Triv already helped you this shift. Master Key is active.'
+                    : 'Triv already tried this shift. No Master Key this time.'
+                  : 'You have not asked Triv yet this shift.'}
+              </p>
+            ) : (
+              <p className="muted">Start a shift to use this option.</p>
+            )}
             <p className="muted">
               In Easy mode, mission cards show required keys. In Normal/Old Hand, you have to remember.
             </p>

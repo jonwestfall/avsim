@@ -1,8 +1,15 @@
-export default function KeyRing({ keys, selectedKeyId, onSelectKey, locked = false }) {
+export default function KeyRing({
+  keys,
+  selectedKeyId,
+  onSelectKey,
+  locked = false,
+  title = 'Key Ring',
+  description = 'Choose a key when you hit a locked door.'
+}) {
   return (
     <section className="panel">
-      <h2>Key Ring</h2>
-      <p className="muted">Choose a key when you hit a locked door.</p>
+      <h2>{title}</h2>
+      <p className="muted">{description}</p>
       <div className="key-grid">
         {keys.map((key) => (
           <button
