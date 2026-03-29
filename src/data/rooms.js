@@ -1,147 +1,91 @@
 // Replace placeholder names here with your actual school room list.
 export const rooms = [
   {
-    id: 'main_office',
-    name: 'Main Office',
-    area: 'Front Office',
-    locked: false,
-    requiredKeyId: null,
-    travelMinutes: 4
+    "id": "unit_office",
+    "name": "Unit Office",
+    "area": "Library",
+    "locked": false,
+    "requiredKeyId": "2ag",
+    "travelMinutes": 2
   },
   {
-    id: 'av_office',
-    name: 'AV Office',
-    area: 'Support Rooms',
-    locked: true,
-    requiredKeyId: 'av_office',
-    travelMinutes: 2
+    "id": "av",
+    "name": "AV,
+    "area": "Library",
+    "locked": true,
+    "requiredKeyId": "2ae",
+    "travelMinutes": 2
   },
   {
-    id: 'wing_a_hall',
-    name: 'Wing A Hallway',
-    area: 'Classroom Wing A',
-    locked: false,
-    requiredKeyId: null,
-    travelMinutes: 5
+    "id": "114",
+    "name": "114",
+    "area": "First Floor",
+    "locked": true,
+    "requiredKeyId": "corbin",
+    "travelMinutes": 4
   },
   {
-    id: 'wing_b_hall',
-    name: 'Wing B Hallway',
-    area: 'Classroom Wing B',
-    locked: false,
-    requiredKeyId: null,
-    travelMinutes: 5
+    "id": "116",
+    "name": "116",
+    "area": "First Floor",
+    "locked": true,
+    "requiredKeyId": "corbin",
+    "travelMinutes": 4
   },
   {
-    id: 'a101',
-    name: 'A101 Placeholder Classroom',
-    area: 'Classroom Wing A',
-    locked: true,
-    requiredKeyId: 'wing_a',
-    travelMinutes: 7
+    "id": "b243",
+    "name": "B243",
+    "area": "Second Floor",
+    "locked": true,
+    "requiredKeyId": "wing_a",
+    "travelMinutes": 7
   },
   {
-    id: 'a102',
-    name: 'A102 Placeholder Classroom',
-    area: 'Classroom Wing A',
-    locked: true,
-    requiredKeyId: 'wing_a',
-    travelMinutes: 7
+    "id": "218",
+    "name": "218",
+    "area": "Second Floor",
+    "locked": true,
+    "requiredKeyId": "2as1",
+    "travelMinutes": 7
   },
   {
-    id: 'a103',
-    name: 'A103 Placeholder Classroom',
-    area: 'Classroom Wing A',
-    locked: true,
-    requiredKeyId: 'wing_a',
-    travelMinutes: 8
+    "id": "212",
+    "name": "Upstairs AV Storage",
+    "area": "Second Floor",
+    "locked": true,
+    "requiredKeyId": "corbin",
+    "travelMinutes": 8
   },
   {
-    id: 'b201',
-    name: 'B201 Placeholder Classroom',
-    area: 'Classroom Wing B',
-    locked: true,
-    requiredKeyId: 'wing_b',
-    travelMinutes: 8
+    "id": "cafm",
+    "name": "Cafeteria Microphone",
+    "area": "Cafeteria",
+    "locked": true,
+    "requiredKeyId": "2aba1",
+    "travelMinutes": 8
   },
   {
-    id: 'b202',
-    name: 'B202 Placeholder Classroom',
-    area: 'Classroom Wing B',
-    locked: true,
-    requiredKeyId: 'wing_b',
-    travelMinutes: 8
+    "id": "gym",
+    "name": "Gym",
+    "area": "Gym",
+    "locked": true,
+    "requiredKeyId": "2aba1",
+    "travelMinutes": 8
   },
   {
-    id: 'b203',
-    name: 'B203 Placeholder Classroom',
-    area: 'Classroom Wing B',
-    locked: true,
-    requiredKeyId: 'wing_b',
-    travelMinutes: 8
+    "id": "auditorium_main",
+    "name": "Auditorium",
+    "area": "Auditorium",
+    "locked": true,
+    "requiredKeyId": "2ah",
+    "travelMinutes": 9
   },
   {
-    id: 'gym_main',
-    name: 'Main Gym',
-    area: 'Athletics',
-    locked: true,
-    requiredKeyId: 'gym',
-    travelMinutes: 9
-  },
-  {
-    id: 'gym_storage',
-    name: 'Gym Equipment Storage',
-    area: 'Athletics',
-    locked: true,
-    requiredKeyId: 'gym',
-    travelMinutes: 10
-  },
-  {
-    id: 'auditorium_main',
-    name: 'Auditorium',
-    area: 'Performance',
-    locked: true,
-    requiredKeyId: 'auditorium',
-    travelMinutes: 9
-  },
-  {
-    id: 'auditorium_booth',
-    name: 'Auditorium Projection Booth',
-    area: 'Performance',
-    locked: true,
-    requiredKeyId: 'auditorium',
-    travelMinutes: 10
-  },
-  {
-    id: 'library',
-    name: 'Library',
-    area: 'Academic Support',
-    locked: true,
-    requiredKeyId: 'library',
-    travelMinutes: 7
-  },
-  {
-    id: 'media_center',
-    name: 'Media Center',
-    area: 'Academic Support',
-    locked: true,
-    requiredKeyId: 'library',
-    travelMinutes: 7
-  },
-  {
-    id: 'night_entrance',
-    name: 'Night School Entrance',
-    area: 'Evening Programs',
-    locked: true,
-    requiredKeyId: 'night_school',
-    travelMinutes: 6
-  },
-  {
-    id: 'night_room_1',
-    name: 'Night School Room 1',
-    area: 'Evening Programs',
-    locked: true,
-    requiredKeyId: 'night_school',
-    travelMinutes: 8
+    "id": "library",
+    "name": "Library",
+    "area": "Library",
+    "locked": true,
+    "requiredKeyId": "2ag",
+    "travelMinutes": 1
   }
 ];
