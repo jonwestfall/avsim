@@ -65,6 +65,22 @@ export const keys = [
     "name": "2AS1",
     "opens": [],
     "rarity": "common"
+  },
+  {
+    "id": "key_9",
+    "name": "2AJ",
+    "opens": [
+      "room_12"
+    ],
+    "rarity": "common"
+  },
+  {
+    "id": "key_10",
+    "name": "2AK",
+    "opens": [
+      "b243"
+    ],
+    "rarity": "common"
   }
 ];
 
@@ -73,5 +89,7 @@ export const DEFAULT_PLAYER_KEYS = [
   "2ag",
   "corbin",
   "2as1",
-  "2aba1"
+  "2aba1",
+  "key_9",
+  "key_10"
 ];
