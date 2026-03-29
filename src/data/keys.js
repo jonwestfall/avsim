@@ -1,60 +1,77 @@
 export const keys = [
   {
-    id: 'av_office',
-    name: 'AV Office Key',
-    opens: ['av_office'],
-    rarity: 'common'
+    "id": "2ae",
+    "name": "2AE",
+    "opens": [
+      "av_office"
+    ],
+    "rarity": "common"
   },
   {
-    id: 'wing_a',
-    name: 'Classroom Wing A Key',
-    opens: ['a101', 'a102', 'a103', 'wing_a_hall'],
-    rarity: 'common'
+    "id": "2ag",
+    "name": "2AG",
+    "opens": [
+      "a101",
+      "a102",
+      "a103",
+      "wing_a_hall"
+    ],
+    "rarity": "common"
   },
   {
-    id: 'wing_b',
-    name: 'Classroom Wing B Key',
-    opens: ['b201', 'b202', 'b203', 'wing_b_hall'],
-    rarity: 'common'
+    "id": "2a",
+    "name": "2A",
+    "opens": "all",
+    "rarity": "rare"
   },
   {
-    id: 'gym',
-    name: 'Gym Key',
-    opens: ['gym_main', 'gym_storage'],
-    rarity: 'common'
+    "id": "corbin",
+    "name": "Corbin",
+    "opens": [
+      "gym_main",
+      "gym_storage"
+    ],
+    "rarity": "common"
   },
   {
-    id: 'auditorium',
-    name: 'Auditorium Key',
-    opens: ['auditorium_main', 'auditorium_booth'],
-    rarity: 'common'
+    "id": "2ah",
+    "name": "2AH",
+    "opens": [
+      "auditorium_main",
+      "auditorium_booth"
+    ],
+    "rarity": "uncommon"
   },
   {
-    id: 'library',
-    name: 'Library/Media Center Key',
-    opens: ['library', 'media_center'],
-    rarity: 'common'
+    "id": "2aba1",
+    "name": "2ABA1",
+    "opens": [
+      "library",
+      "media_center"
+    ],
+    "rarity": "common"
   },
   {
-    id: 'night_school',
-    name: 'Night School Entrance Key',
-    opens: ['night_entrance', 'night_room_1'],
-    rarity: 'uncommon'
+    "id": "2ad",
+    "name": "2AD",
+    "opens": [
+      "night_entrance",
+      "night_room_1"
+    ],
+    "rarity": "uncommon"
   },
   {
-    id: 'master',
-    name: 'Master Key',
-    opens: 'all',
-    rarity: 'rare'
+    "id": "2as1",
+    "name": "2AS1",
+    "opens": [],
+    "rarity": "common"
   }
 ];
 
 export const DEFAULT_PLAYER_KEYS = [
-  'av_office',
-  'wing_a',
-  'wing_b',
-  'gym',
-  'auditorium',
-  'library',
-  'night_school'
+  "2ae",
+  "2ag",
+  "corbin",
+  "2as1",
+  "2aba1"
 ];
