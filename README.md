@@ -37,6 +37,14 @@ All gameplay content is data-driven and intended for easy editing:
 - Flavor text and event messages: `src/data/flavorText.js`
 - Map area grouping: `src/data/mapAreas.js`
 
+## Visual Admin Editor (`/admin`)
+After deploy (or in local dev), open `/admin` (example: `/avsim/admin` on GitHub Pages).
+
+- Loads the currently published data shipped with the app.
+- Lets you add/remove/edit entries with forms (no JSON typing required).
+- Download updated `rooms.js`, `keys.js`, `missions.js`, `flavorText.js`.
+- Replace those files in `src/data/` and redeploy.
+
 ## Change GitHub Pages Base Path
 Edit `BASE_PATH` in `vite.config.js`:
 

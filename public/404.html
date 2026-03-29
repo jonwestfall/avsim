@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AV Simulator Redirect</title>
+    <script>
+      (function redirectToIndexForSpaRoutes() {
+        var pathParts = window.location.pathname.split('/').filter(Boolean);
+        var base = pathParts.length > 0 ? '/' + pathParts[0] : '';
+        var target = window.location.pathname + window.location.search + window.location.hash;
+        window.location.replace(base + '/?redirect=' + encodeURIComponent(target));
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

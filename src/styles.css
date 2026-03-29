@@ -1,13 +1,13 @@
 :root {
-  --beige-1: #e6dfcf;
-  --beige-2: #d6ccb8;
-  --ink: #233231;
-  --panel: #f2ecdf;
-  --panel-line: #a6ad9a;
-  --green-muted: #557366;
-  --blue-muted: #56708a;
-  --danger: #7f3d3d;
-  --accent: #7c8f76;
+  --bg-1: #f3f4f6;
+  --bg-2: #e5e7eb;
+  --ink: #1f2937;
+  --panel: #f9fafb;
+  --panel-line: #9ca3af;
+  --crimson: #991b1b;
+  --crimson-soft: #b91c1c;
+  --accent: #d1d5db;
+  --danger: #7f1d1d;
 }
 
 * {
@@ -17,7 +17,7 @@
 body {
   margin: 0;
   font-family: 'Trebuchet MS', 'Verdana', sans-serif;
-  background: linear-gradient(180deg, var(--beige-1), var(--beige-2));
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
   color: var(--ink);
 }
 
@@ -36,7 +36,8 @@ button {
 }
 
 button:hover {
-  background: #f7f1e8;
+  background: #ffffff;
+  border-color: var(--crimson-soft);
 }
 
 button:disabled {
@@ -51,15 +52,31 @@ button:disabled {
 }
 
 .title-strip {
-  border: 2px solid var(--green-muted);
-  background: linear-gradient(90deg, #d8d2c4, #d7dfd8);
+  border: 2px solid var(--crimson);
+  background: linear-gradient(90deg, #f3f4f6, #e5e7eb);
   padding: 1rem;
   margin-bottom: 1rem;
+}
+
+.title-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.school-logo {
+  width: clamp(64px, 10vw, 110px);
+  height: auto;
+  object-fit: contain;
+  border: 1px solid var(--panel-line);
+  background: #fff;
+  padding: 0.2rem;
 }
 
 .title-strip h1 {
   margin: 0;
   font-size: clamp(1.7rem, 4vw, 2.3rem);
+  color: var(--crimson);
 }
 
 .title-strip p {
@@ -72,7 +89,7 @@ button:disabled {
   background: var(--panel);
   padding: 1rem;
   margin-bottom: 1rem;
-  box-shadow: 3px 3px 0 #bdb5a5;
+  box-shadow: 3px 3px 0 #cbd5e1;
 }
 
 .hud-grid,
@@ -98,12 +115,12 @@ button:disabled {
 }
 
 .muted {
-  color: #445756;
+  color: #4b5563;
 }
 
 .clipboard-panel {
-  background: #f0ead8;
-  border-color: #8f9485;
+  background: #f3f4f6;
+  border-color: #9ca3af;
   position: relative;
 }
 
@@ -112,8 +129,9 @@ button:disabled {
   position: absolute;
   top: -14px;
   left: 12px;
-  background: #bec5b8;
-  border: 1px solid #818a7c;
+  background: #fee2e2;
+  border: 1px solid var(--crimson);
+  color: var(--crimson);
   padding: 0.15rem 0.45rem;
   font-size: 0.72rem;
   letter-spacing: 0.06rem;
@@ -124,8 +142,8 @@ button:disabled {
 }
 
 .mission-card {
-  border: 1px solid #95a28f;
-  background: #f8f4eb;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
   padding: 0.75rem;
 }
 
@@ -143,22 +161,22 @@ button:disabled {
 }
 
 .badge.active {
-  border-color: var(--blue-muted);
-  color: var(--blue-muted);
+  border-color: var(--crimson-soft);
+  color: var(--crimson-soft);
 }
 
 .badge.accepted {
-  border-color: #7a7a5e;
-  color: #7a7a5e;
+  border-color: #6b7280;
+  color: #6b7280;
 }
 
 .badge.completed {
-  border-color: var(--green-muted);
-  color: var(--green-muted);
+  border-color: var(--crimson);
+  color: var(--crimson);
 }
 
 .task-panel {
-  border-top: 1px solid #9ca693;
+  border-top: 1px solid #d1d5db;
   padding-top: 0.7rem;
   margin-top: 0.7rem;
 }
@@ -168,9 +186,9 @@ button:disabled {
 }
 
 .map-area {
-  border: 1px solid #99a194;
+  border: 1px solid #cbd5e1;
   padding: 0.6rem;
-  background: #f9f4ea;
+  background: #ffffff;
 }
 
 .map-area h3 {
@@ -185,8 +203,8 @@ button:disabled {
 }
 
 .room-btn.current {
-  border-color: var(--blue-muted);
-  background: #e5ebef;
+  border-color: var(--crimson-soft);
+  background: #fee2e2;
 }
 
 .key-grid {
@@ -202,15 +220,15 @@ button:disabled {
 }
 
 .key-btn.active {
-  border-color: var(--blue-muted);
-  background: #e4ebf0;
+  border-color: var(--crimson-soft);
+  background: #fee2e2;
 }
 
 .key-head {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border: 2px solid #7f8a7b;
+  border: 2px solid var(--crimson-soft);
   display: inline-block;
 }
 
@@ -239,7 +257,7 @@ button:disabled {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  border: 1px solid #b3b9a9;
+  border: 1px solid #d1d5db;
   padding: 0.45rem;
   margin-bottom: 0.45rem;
 }
@@ -247,15 +265,15 @@ button:disabled {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(35, 50, 49, 0.35);
+  background: rgba(31, 41, 55, 0.35);
   display: grid;
   place-items: center;
   padding: 1rem;
 }
 
 .modal-card {
-  background: #fcf7ee;
-  border: 2px solid #8f9887;
+  background: #ffffff;
+  border: 2px solid var(--crimson-soft);
   padding: 1rem;
   max-width: 430px;
   width: 100%;
@@ -264,7 +282,7 @@ button:disabled {
 .footer-note {
   text-align: center;
   padding-bottom: 1.25rem;
-  color: #3d5251;
+  color: #4b5563;
 }
 
 @media (max-width: 780px) {
@@ -279,5 +297,104 @@ button:disabled {
   .pickup-row {
     flex-direction: column;
     align-items: stretch;
+  }
+}
+
+.admin-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.admin-toolbar {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.admin-link-btn {
+  border: 1px solid var(--panel-line);
+  border-bottom-width: 3px;
+  padding: 0.55rem 0.8rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--panel);
+}
+
+.editor-card {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  padding: 0.8rem;
+  margin: 0.8rem 0;
+}
+
+.editor-grid {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.editor-grid.compact {
+  margin-top: 0.5rem;
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+}
+
+.editor-grid label,
+.line-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.editor-grid input,
+.editor-grid select,
+.line-row input {
+  border: 1px solid #9ca3af;
+  background: #fff;
+  min-height: 36px;
+  padding: 0.4rem 0.45rem;
+}
+
+.chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.6rem 0;
+}
+
+.chip-toggle {
+  border: 1px solid #9ca3af;
+  padding: 0.3rem 0.45rem;
+  background: #f3f4f6;
+}
+
+.checkbox-line {
+  flex-direction: row;
+  align-items: center;
+}
+
+.danger-btn {
+  border-color: var(--crimson-soft);
+  color: var(--danger);
+}
+
+.line-row {
+  margin: 0.4rem 0;
+}
+
+.sub-editor {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+}
+
+@media (max-width: 640px) {
+  .title-brand {
+    align-items: flex-start;
+  }
+
+  .school-logo {
+    width: 64px;
   }
 }
